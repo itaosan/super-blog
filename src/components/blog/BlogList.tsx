@@ -92,6 +92,17 @@ const BlogList = () => {
               <button type="button" className="read-more">
                 続きを読む
               </button>
+              <button
+                type="button"
+                className="delete-button"
+                onClick={() => {
+                  const updatedPosts = posts.filter(p => p.id !== post.id);
+                  setPosts(updatedPosts);
+                  localStorage.setItem('blogPosts', JSON.stringify(updatedPosts));
+                }}
+              >
+                削除
+              </button>
             </div>
           </article>
         ))}
