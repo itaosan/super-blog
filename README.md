@@ -1,54 +1,87 @@
-# React + TypeScript + Vite
+# Super Blog Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern blog application built with:
 
-Currently, two official plugins are available:
+- React 18
+- TypeScript 5
+- Vite 5
+- ESLint (TypeScript ESLint configuration)
+- React Hooks lint rules
+- React Refresh lint rules
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Type-safe components with TypeScript
+- Hot Module Replacement (HMR)
+- Strict ESLint rules for code quality
+- Pre-configured React Refresh support
+- Modern project structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
+
+1. Install dependencies:
+```bash
+pnpm install
+```
+
+2. Start development server:
+```bash
+pnpm dev
+```
+
+## Available Scripts
+
+- `dev`: Start development server
+- `build`: Create production build
+- `lint`: Run ESLint checks
+- `preview`: Preview production build
+
+## ESLint Configuration
+
+This project uses a comprehensive ESLint setup with:
+
+- TypeScript ESLint recommended rules
+- React Hooks rules
+- React Refresh rules
+- Browser environment globals
 
 ```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+// Current eslint.config.js
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
-})
+)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- `src/`: Main source code
+- `public/`: Static assets
+- `ai/`: AI-related utilities
+- `.github/`: GitHub workflows
+- `eslint.config.js`: ESLint configuration
+- `tsconfig.*.json`: TypeScript configurations
