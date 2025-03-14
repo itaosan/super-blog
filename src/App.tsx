@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import BlogPostForm from './pages/blog/BlogPostForm';
+import BlogList from './components/blog/BlogList';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="app-container">
+        <header className="header">
+          <h1>Super Blog</h1>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">ホーム</Link>
+              </li>
+              <li>
+                <Link to="/blog/new">新規投稿</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog/new" element={<BlogPostForm />} />
+          </Routes>
+        </main>
+
+        <footer className="footer">
+          <p>&copy; {new Date().getFullYear()} Super Blog</p>
+        </footer>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+// ホームページコンポーネント
+function Home() {
+  return (
+    <div className="home">
+      <div className="welcome-section">
+        <h2>Welcome to Super Blog!</h2>
+        <p>
+          ここは最高のブログプラットフォームです。あなたの考えやアイデアを世界に共有しましょう。
+        </p>
+        <div className="cta-button">
+          <Link to="/blog/new">新しい記事を投稿する</Link>
+        </div>
+      </div>
+
+      <div className="blog-list-section">
+        <BlogList />
+      </div>
+    </div>
+  );
+}
+
+export default App;
