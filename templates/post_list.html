@@ -1,0 +1,18 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Post List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Posts&lt;/h1&gt;
+    &lt;ul&gt;
+        {% for post in posts %}
+        &lt;li&gt;
+            &lt;a href="{{ url_for('post_detail', post_id=post.id) }}"&gt;
+                {{ post.title }}
+            &lt;/a&gt;
+        &lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
