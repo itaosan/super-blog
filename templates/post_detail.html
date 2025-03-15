@@ -1,0 +1,12 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Post Detail&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href="{{ url_for('post_list') }}"&gt;Back to List&lt;/a&gt;
+    &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ post.content }}&lt;/p&gt;
+    &lt;a href="{{ url_for('edit_post', post_id=post.id) }}"&gt;Edit&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;

@@ -1,0 +1,16 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Edit Post&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Edit Post&lt;/h1&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;label&gt;Title:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;{{ post.title }}&quot; required&gt;&lt;br&gt;
+        &lt;label&gt;Content:&lt;/label&gt;&lt;br&gt;
+        &lt;textarea name=&quot;content&quot; required&gt;{{ post.content }}&lt;/textarea&gt;&lt;br&gt;
+        &lt;button type=&quot;submit&quot;&gt;Save Changes&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
