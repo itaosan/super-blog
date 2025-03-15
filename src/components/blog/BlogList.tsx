@@ -89,9 +89,9 @@ const BlogList = () => {
             )}
 
             <div className="post-actions">
-              <button type="button" className="read-more">
+              <Link to={`/blog/${post.id}`} className="read-more">
                 続きを読む
-              </button>
+              </Link>
               <button
                 type="button"
                 className="delete-button"

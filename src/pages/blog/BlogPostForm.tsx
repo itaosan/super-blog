@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // ブログ投稿の型定義
 interface BlogPost {
@@ -10,13 +10,29 @@ interface BlogPost {
   createdAt: Date;
 }
 
-const BlogPostForm = () => {
+const BlogPostForm = ({ isEdit = false }: { isEdit?: boolean }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   // フォームの状態管理
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
+
+  useEffect(() => {
+    if (isEdit && id) {
+      const savedPosts = localStorage.getItem('blogPosts');
+      if (savedPosts) {
+        const posts = JSON.parse(savedPosts);
+        const post = posts.find((p: BlogPost) => p.id === id);
+        if (post) {
+          setTitle(post.title);
+          setContent(post.content);
+          setTags(post.tags.join(', '));
+        }
+      }
+    }
+  }, [isEdit, id]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 

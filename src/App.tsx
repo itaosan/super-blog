@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import BlogPostForm from './pages/blog/BlogPostForm';
+import BlogDetail from './pages/blog/BlogDetail';
 import BlogList from './components/blog/BlogList';
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog/new" element={<BlogPostForm />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/blog/edit/:id" element={<BlogPostForm isEdit={true} />} />
           </Routes>
         </main>
 
