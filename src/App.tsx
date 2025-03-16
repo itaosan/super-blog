@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import BlogList from "./components/blog/BlogList";
 import BlogPostForm from "./pages/blog/BlogPostForm";
+import PostDetail from "./components/PostDetail";
 
 function App() {
        return (
@@ -26,6 +27,7 @@ function App() {
                                        <Routes>
                                                <Route path="/" element={<Home />} />
                                                <Route path="/blog/new" element={<BlogPostForm />} />
+        <Route path="/blog/:id" element={<PostDetail />} />
                                        </Routes>
                                </main>
 
