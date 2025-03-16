@@ -1,5 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 # Temporary in-memory storage for demonstration
 posts = [
@@ -11,12 +14,12 @@ posts = [
 def post_list():
     return render_template('post_list.html', posts=posts)
 
-@app.route('/post/<int:post_id>')
-def post_detail(post_id):
+@app.route('/api/posts/<int:post_id>')
+def api_post_detail(post_id):
     post = next((p for p in posts if p['id'] == post_id), None)
     if not post:
-        return "Post not found", 404
-    return render_template('post_detail.html', post=post)
+        return jsonify({'error': 'Post not found'}), 404
+    return jsonify(post)
 
 @app.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])
 def edit_post(post_id):
