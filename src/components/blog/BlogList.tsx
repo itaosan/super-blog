@@ -77,6 +77,12 @@ const BlogList = () => {
                                                </div>
 
                                                <p className="post-summary">{summarizeContent(post.content)}</p>
+                                               <div className="read-more">
+                                                   <Link to={`/blog/${post.id}`} className="read-more-link">
+                                                       続きを読む →
+                                                   </Link>
+                                               </div>
+
 
                                                {post.tags.length > 0 && (
                                                        <div className="post-tags">
