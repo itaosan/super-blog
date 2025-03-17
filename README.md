@@ -1,13 +1,24 @@
 # Super Blog Project
 
-A modern blog application built with:
+[![CI/CD Status](https://github.com/itaosan/super-blog/actions/workflows/main.yml/badge.svg)](https://github.com/itaosan/super-blog/actions)
 
-- React 18
+A full-stack blog application with AI integration built with:
+
+**Frontend:**
+- React 18 with Vite 5
 - TypeScript 5
-- Vite 5
-- ESLint (TypeScript ESLint configuration)
+- CSS Modules
+- React Router 6
+
+**Code Quality:**
+- Biome (TypeScript configuration)
 - React Hooks lint rules
 - React Refresh lint rules
+- Prettier code formatting
+
+
+
+
 
 ## Features
 
@@ -33,55 +44,45 @@ pnpm dev
 
 - `dev`: Start development server
 - `build`: Create production build
-- `lint`: Run ESLint checks
+- `lint`: Run Biome checks
 - `preview`: Preview production build
 
-## ESLint Configuration
+## Biome Configuration
 
-This project uses a comprehensive ESLint setup with:
+This project uses Biome for code formatting and linting with:
 
-- TypeScript ESLint recommended rules
-- React Hooks rules
-- React Refresh rules
-- Browser environment globals
+- TypeScript support
+- React-specific rules
+- Recommended style guidelines
+- Auto-formatting capabilities
 
-```js
-// Current eslint.config.js
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-
-export default tseslint.config(
-  { ignores: ['dist'] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
+```json
+// biome.json
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "organizeImports": {
+    "enabled": true
   },
-)
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80
+  }
+}
 ```
 
 ## Project Structure
 
 - `src/`: Main source code
 - `public/`: Static assets
-- `ai/`: AI-related utilities
 - `.github/`: GitHub workflows
-- `eslint.config.js`: ESLint configuration
+- `biome.json`: Biome configuration
 - `tsconfig.*.json`: TypeScript configurations
