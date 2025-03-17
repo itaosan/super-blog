@@ -1,13 +1,27 @@
 # Super Blog Project
 
-A modern blog application built with:
+[![CI/CD Status](https://github.com/itaosan/super-blog/actions/workflows/main.yml/badge.svg)](https://github.com/itaosan/super-blog/actions)
 
-- React 18
+A full-stack blog application with AI integration built with:
+
+**Frontend:**
+- React 18 with Vite 5
 - TypeScript 5
-- Vite 5
+- CSS Modules
+- React Router 6
+
+**Code Quality:**
 - ESLint (TypeScript ESLint configuration)
 - React Hooks lint rules
 - React Refresh lint rules
+- Prettier code formatting
+
+**AI Integration:**
+- GPT-4 powered content generation API
+- Natural language processing utilities
+- Automated content tagging system
+
+
 
 ## Features
 
